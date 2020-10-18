@@ -1,5 +1,5 @@
 {
-    "name": "dragon/ec-maker",
+    "name": "dragonhai/ec-maker",
     "description": "generate code simple on ec-cube",
     "type": "library",
     "license": "BSD 2-Clause",
