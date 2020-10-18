@@ -81,7 +81,7 @@ class <?= $class_name ?> extends AbstractController
         }
 
         return [
-            '<?= $entity_var_singular ?>' => $<?= $entity_var_singular ?>,
+            '<?= $entity_twig_var_singular ?>' => $<?= $entity_var_singular ?>,
             'form' => $form->createView(),
         ];
     }
