@@ -1,0 +1,30 @@
+{
+    "name": "dragon/ec-maker",
+    "description": "generate code simple on ec-cube",
+    "type": "library",
+    "license": "BSD 2-Clause",
+    "authors": [
+        {
+            "name": "Bui Thanh Hai",
+            "email": "b.thanhhai@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.1.3",
+        "symfony/inflector": "^3.4",
+        "symfony/maker-bundle": "^1.0",
+        "symfony/yaml": "^3.4",
+        "symfony/dotenv": "^3.4",
+        "doctrine/lexer": "^1.0",
+        "doctrine/inflector": "^1.3",
+        "doctrine/migrations": "^1.8",
+        "doctrine/orm": "^2.6",
+        "vlucas/phpdotenv": "v2.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MakerBundle\\": "src/MakerBundle"
+        }
+    }
+}
