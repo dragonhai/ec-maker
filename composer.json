@@ -2,7 +2,7 @@
     "name": "dragonhai/ec-maker",
     "description": "generate code simple on ec-cube",
     "type": "library",
-    "license": "BSD 2-Clause",
+    "license": "BSD-2-Clause",
     "authors": [
         {
             "name": "Bui Thanh Hai",
