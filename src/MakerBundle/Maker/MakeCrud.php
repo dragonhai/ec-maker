@@ -208,7 +208,7 @@ final class MakeCrud extends AbstractMaker
 
         $version = date('YmdHis');
         $generator->generateTemplate(
-            '../../Customize/Resource/generator/' . $version . '/config/customize.yaml',
+            '../../Customize/Resource/generator/' . $routeName . '/' . $version . '/config/customize.yaml',
             'crud/config/customize.tpl.php',
             [
                 'route_name' => $routeName,
@@ -218,7 +218,7 @@ final class MakeCrud extends AbstractMaker
 
         $locale = env('ECCUBE_LOCALE', 'ja');
         $generator->generateTemplate(
-            '../../Customize/Resource/generator/' . $version . '/locale/messages.' . $locale . '.yaml',
+            '../../Customize/Resource/generator/' . $routeName . '/' . $version . '/locale/messages.' . $locale . '.yaml',
             'crud/locale/messages.tpl.php',
             [
                 'route_name' => $routeName,
@@ -231,7 +231,7 @@ final class MakeCrud extends AbstractMaker
 
         $this->writeSuccessMessage($io);
 
-        $io->text(sprintf('Next: Check your new CRUD by going to <fg=yellow>/admin%s/</>', Str::asRoutePath($controllerClassDetails->getRelativeNameWithoutSuffix())));
+        $io->text(sprintf('Next: Check your new CRUD by going to <fg=yellow>/admin/%s/</>', $routeName));
     }
 
     /**

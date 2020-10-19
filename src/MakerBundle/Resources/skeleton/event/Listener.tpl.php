@@ -2,13 +2,13 @@
 
 namespace <?= $namespace; ?>;
 
-<?= $repository_full_class_name ? "use $repository_full_class_name;\n" : '' ?>
+<?= isset($repository_full_class_name) ? "use $repository_full_class_name;\n" : '' ?>
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 <?= $event_full_class_name ? "use $event_full_class_name;\n" : '' ?>
 
 class <?= $class_name ?> implements EventSubscriberInterface
 {
-<?php if ($repository_full_class_name) : ?>
+<?php if (isset($repository_full_class_name)): ?>
     /**
      * @var <?= $repository_class_name ?><?= PHP_EOL ?>
      */
@@ -17,7 +17,7 @@ class <?= $class_name ?> implements EventSubscriberInterface
     /**
      * Initialize with repository.
      *
-     * @param <?= $repository_class_name ?> $<?= $repository_var ?>
+     * @param <?= $repository_class_name ?> $<?= $repository_var ?><?= PHP_EOL ?>
      */
     public function __construct(<?= $repository_class_name ?> $<?= $repository_var ?>)
     {
@@ -37,8 +37,8 @@ class <?= $class_name ?> implements EventSubscriberInterface
      */
     public function <?= $method_name ?>(<?= $event_arg ?>)
     {
-<?php if ($repository_full_class_name): ?>
-        $twig = '@admin/<?= $route_name ?>/display.twig';
+<?php if (isset($repository_full_class_name)): ?>
+        $twig = '@admin/<?= ucfirst($route_name) ?>/display.twig';
         $event->addSnippet($twig);
         $<?= $entity_twig_var_plural ?> = $this-><?= $repository_var ?>->getList();
         $parameters = $event->getParameters();

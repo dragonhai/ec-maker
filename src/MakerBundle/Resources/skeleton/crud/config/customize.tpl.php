@@ -13,4 +13,4 @@ parameters:
 framework:
     translator:
         paths:
-            - '%kernel.project_dir%/app/Customize/Resource/generator/<?= $version ?>/locale/'
+            - '%kernel.project_dir%/app/Customize/Resource/generator/<?= $route_name ?>/<?= $version ?>/locale/'

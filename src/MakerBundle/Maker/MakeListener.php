@@ -106,7 +106,7 @@ final class MakeListener extends AbstractMaker
                     'Repository'
                 );
                 $repositoryClassName = $repositoryClassDetails->getShortName();
-                $routeName = substr($repositoryClassName, 0, strlen($repositoryClassName) - 10);
+                $routeName = Str::asRouteName(substr($repositoryClassName, 0, strlen($repositoryClassName) - 10));
                 $entityTwigVarPlural = Str::asTwigVariable(lcfirst($this->pluralize($routeName)));
 
                 $repositoryVars = [
