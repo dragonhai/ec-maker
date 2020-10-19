@@ -11,21 +11,21 @@
 
 namespace MakerBundle\Maker;
 
+use Doctrine\Common\Inflector\Inflector as LegacyInflector;
+use Doctrine\Inflector\InflectorFactory;
+use MakerBundle\EventRegistry;
 use MakerBundle\Generator;
 use Symfony\Bundle\MakerBundle\ConsoleStyle;
 use Symfony\Bundle\MakerBundle\DependencyBuilder;
-use Symfony\Bundle\MakerBundle\EventRegistry;
+use Symfony\Bundle\MakerBundle\Doctrine\DoctrineHelper;
 use Symfony\Bundle\MakerBundle\InputConfiguration;
 use Symfony\Bundle\MakerBundle\Str;
 use Symfony\Bundle\MakerBundle\Validator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Question\Question;
-use Symfony\Bundle\MakerBundle\Doctrine\DoctrineHelper;
-use Doctrine\Common\Inflector\Inflector as LegacyInflector;
-use Doctrine\Inflector\InflectorFactory;
 
 /**
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
@@ -43,7 +43,7 @@ final class MakeListener extends AbstractMaker
     {
         $this->doctrineHelper = $doctrineHelper;
         $this->eventRegistry = $eventRegistry;
-        
+
         if (class_exists(InflectorFactory::class)) {
             $this->inflector = InflectorFactory::create()->build();
         }
@@ -101,7 +101,7 @@ final class MakeListener extends AbstractMaker
 
             if (null !== $entityDoctrineDetails->getRepositoryClass()) {
                 $repositoryClassDetails = $generator->createClassNameDetails(
-                    '\\'.$entityDoctrineDetails->getRepositoryClass(),
+                    '\\' . $entityDoctrineDetails->getRepositoryClass(),
                     'Repository\\',
                     'Repository'
                 );
@@ -129,18 +129,18 @@ final class MakeListener extends AbstractMaker
         $eventFullClassName = $this->eventRegistry->getEventClassName($event);
         $eventClassName = $eventFullClassName ? Str::getShortClassName($eventFullClassName) : null;
 
-        $methodName = class_exists($event) 
-        ? (Str::asEventMethod(Str::asSnakeCase($eventClassName))) 
+        $methodName = class_exists($event)
+        ? (Str::asEventMethod(Str::asSnakeCase($eventClassName)))
         : (Str::asEventMethod(Str::asSnakeCase($event)));
         $generator->generateClass(
             $listenerClassNameDetails->getFullName(),
             'event/Listener.tpl.php',
             array_merge([
-                    'event' => class_exists($event) ? sprintf('%s::class', $eventClassName) : sprintf('\'%s\'', $event),
-                    'event_full_class_name' => $eventFullClassName,
-                    'event_arg' => $eventClassName ? sprintf('%s $event', $eventClassName) : '$event',
-                    'method_name' => $methodName,
-                ], 
+                'event' => class_exists($event) ? sprintf('%s::class', $eventClassName) : sprintf('\'%s\'', $event),
+                'event_full_class_name' => $eventFullClassName,
+                'event_arg' => $eventClassName ? sprintf('%s $event', $eventClassName) : '$event',
+                'method_name' => $methodName,
+            ],
                 $repositoryVars
             )
         );

@@ -27,7 +27,7 @@
                 <argument type="service" id="debug.file_link_formatter" on-invalid="ignore" />
             </service>
 
-            <service id="maker.event_registry" class="Symfony\Bundle\MakerBundle\EventRegistry">
+            <service id="maker.event_registry" class="MakerBundle\EventRegistry">
                 <argument type="service" id="event_dispatcher" />
             </service>
 
