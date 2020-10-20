@@ -59,7 +59,7 @@ final class MakeListener extends AbstractMaker
         $command
             ->setDescription('Creates a new event listener class')
             ->addArgument('name', InputArgument::OPTIONAL, 'Choose a class name for your event listener (e.g. <fg=yellow>ExceptionListener</>)')
-            ->addArgument('event', InputArgument::OPTIONAL, 'What event do you want to subscribe to?')
+            ->addArgument('event', InputArgument::OPTIONAL, 'What event do you want to listen to?')
             ->addOption(
                 'entity',
                 null,

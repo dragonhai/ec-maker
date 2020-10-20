@@ -14,17 +14,17 @@ namespace MakerBundle\Maker;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
-use Symfony\Bundle\MakerBundle\ConsoleStyle;
-use Symfony\Bundle\MakerBundle\DependencyBuilder;
-use Symfony\Bundle\MakerBundle\Doctrine\DoctrineHelper;
 use MakerBundle\Doctrine\EntityClassGenerator;
-use Symfony\Bundle\MakerBundle\Doctrine\EntityRegenerator;
-use Symfony\Bundle\MakerBundle\Doctrine\EntityRelation;
-use Symfony\Bundle\MakerBundle\Doctrine\ORMDependencyBuilder;
-use Symfony\Bundle\MakerBundle\Exception\RuntimeCommandException;
+use MakerBundle\Doctrine\EntityRegenerator;
 use MakerBundle\FileManager;
 use MakerBundle\Generator;
 use MakerBundle\InputAwareMakerInterface;
+use Symfony\Bundle\MakerBundle\ConsoleStyle;
+use Symfony\Bundle\MakerBundle\DependencyBuilder;
+use Symfony\Bundle\MakerBundle\Doctrine\DoctrineHelper;
+use Symfony\Bundle\MakerBundle\Doctrine\EntityRelation;
+use Symfony\Bundle\MakerBundle\Doctrine\ORMDependencyBuilder;
+use Symfony\Bundle\MakerBundle\Exception\RuntimeCommandException;
 use Symfony\Bundle\MakerBundle\InputConfiguration;
 use Symfony\Bundle\MakerBundle\Str;
 use Symfony\Bundle\MakerBundle\Util\ClassDetails;
@@ -83,7 +83,7 @@ final class MakeEntity extends AbstractMaker implements InputAwareMakerInterface
             ->addOption('api-resource', 'a', InputOption::VALUE_NONE, 'Mark this class as an API Platform resource (expose a CRUD API for it)')
             ->addOption('regenerate', null, InputOption::VALUE_NONE, 'Instead of adding new fields, simply generate the methods (e.g. getter/setter) for existing fields')
             ->addOption('overwrite', null, InputOption::VALUE_NONE, 'Overwrite any existing getter/setter methods')
-            ->setHelp(file_get_contents(__DIR__.'/../Resources/help/MakeEntity.txt'))
+            ->setHelp(file_get_contents(__DIR__ . '/../Resources/help/MakeEntity.txt'))
         ;
 
         $inputConf->setArgumentAsNonInteractive('name');
@@ -398,7 +398,7 @@ final class MakeEntity extends AbstractMaker implements InputAwareMakerInterface
                 'float' => [],
             ],
             'relation' => [
-                'relation' => 'a '.$wizard.' will help you build the relation',
+                'relation' => 'a ' . $wizard . ' will help you build the relation',
                 EntityRelation::MANY_TO_ONE => [],
                 EntityRelation::ONE_TO_MANY => [],
                 EntityRelation::MANY_TO_MANY => [],
@@ -485,8 +485,8 @@ final class MakeEntity extends AbstractMaker implements InputAwareMakerInterface
             // in the Entity namespace versus just checking the full class
             // name to avoid issues with classes like "Directory" that exist
             // in PHP's core.
-            if (class_exists($this->getEntityNamespace().'\\'.$answeredEntityClass)) {
-                $targetEntityClass = $this->getEntityNamespace().'\\'.$answeredEntityClass;
+            if (class_exists($this->getEntityNamespace() . '\\' . $answeredEntityClass)) {
+                $targetEntityClass = $this->getEntityNamespace() . '\\' . $answeredEntityClass;
             } elseif (class_exists($answeredEntityClass)) {
                 $targetEntityClass = $answeredEntityClass;
             } else {
@@ -561,7 +561,7 @@ final class MakeEntity extends AbstractMaker implements InputAwareMakerInterface
             // recommend an inverse side, except for OneToOne, where it's inefficient
             $recommendMappingInverse = EntityRelation::ONE_TO_ONE !== $relation->getType();
 
-            $getterMethodName = 'get'.Str::asCamelCase(Str::getShortClassName($relation->getOwningClass()));
+            $getterMethodName = 'get' . Str::asCamelCase(Str::getShortClassName($relation->getOwningClass()));
             if (EntityRelation::ONE_TO_ONE !== $relation->getType()) {
                 // pluralize!
                 $getterMethodName = Str::singularCamelCaseToPluralCamelCase($getterMethodName);
@@ -697,7 +697,7 @@ final class MakeEntity extends AbstractMaker implements InputAwareMakerInterface
 
                 break;
             default:
-                throw new \InvalidArgumentException('Invalid type: '.$type);
+                throw new \InvalidArgumentException('Invalid type: ' . $type);
         }
 
         return $relation;
@@ -795,7 +795,7 @@ final class MakeEntity extends AbstractMaker implements InputAwareMakerInterface
     private function doesEntityUseAnnotationMapping(string $className): bool
     {
         if (!class_exists($className)) {
-            $otherClassMetadatas = $this->doctrineHelper->getMetadata(Str::getNamespace($className).'\\', true);
+            $otherClassMetadatas = $this->doctrineHelper->getMetadata(Str::getNamespace($className) . '\\', true);
 
             // if we have no metadata, we should assume this is the first class being mapped
             if (empty($otherClassMetadatas)) {
