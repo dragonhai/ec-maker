@@ -231,7 +231,11 @@ final class MakeCrud extends AbstractMaker
 
         $this->writeSuccessMessage($io);
 
-        $io->text(sprintf('Next: Check your new CRUD by going to <fg=yellow>/admin/%s/</>', $routeName));
+        $io->text([
+            sprintf('Next: Check your new CRUD by going to <fg=yellow>/admin/%s/</>', $routeName),
+            sprintf('Consider: Create a Listener with <info>php bin/console make:listener %s Product/detail.twig --entity=%s</info>', $routeName, $entityClassDetails->getShortName()),
+            ''
+        ]);
     }
 
     /**

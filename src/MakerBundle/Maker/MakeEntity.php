@@ -264,7 +264,7 @@ final class MakeEntity extends AbstractMaker implements InputAwareMakerInterface
         $this->writeSuccessMessage($io);
         $io->text([
             'Next: When you\'re ready, create a migration with <info>php bin/console make:migration</info>',
-            'Consider: Create a CRUD with <info>php bin/console make:crud <entity></info>',
+            sprintf('Consider: Create a CRUD with <info>php bin/console make:crud %s</info>', $input->getArgument('name')),
             '',
         ]);
     }
