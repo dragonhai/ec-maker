@@ -219,7 +219,7 @@ final class MakeCrud extends AbstractMaker
         $locale = env('ECCUBE_LOCALE', 'ja');
         $generator->generateTemplate(
             '../../Customize/Resource/generator/' . $routeName . '/' . $version . '/locale/messages.' . $locale . '.yaml',
-            'crud/locale/messages.tpl.php',
+            'crud/locale/messages.' . $locale . '.tpl.php',
             [
                 'route_name' => $routeName,
                 'version' => $version,

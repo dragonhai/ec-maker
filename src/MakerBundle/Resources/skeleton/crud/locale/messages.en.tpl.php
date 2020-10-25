@@ -15,6 +15,8 @@ admin.<?= $route_name ?>.<?= $route_name ?>_list: List Items
 admin.<?= $route_name ?>.<?= $route_name ?>_new: Create Item
 admin.<?= $route_name ?>.<?= $route_name ?>_edit: Update Item
 admin.<?= $route_name ?>.<?= $route_name ?>_detail: Detail Item
+
+# Table Items
 admin.<?= $route_name ?>.created_at: Created At
 admin.<?= $route_name ?>.updated_at: Updated At
 admin.<?= $route_name ?>.actions: Actions
