@@ -9,8 +9,8 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 /**
  * @method <?= $entity_class_name ?>|null find($id, $lockMode = null, $lockVersion = null)
  * @method <?= $entity_class_name ?>[]    getList()
- * @method void     save(<?= $entity_class_name ?> $<?= $entity_class_name ?>, <?= $entity_class_name ?> $<?= $entity_class_name ?>Origin = null)
- * @method void     delete(<?= $entity_class_name ?> $<?= $entity_class_name ?>)
+ * @method void<?= str_repeat(' ', strlen($entity_class_name)) ?>  save(<?= $entity_class_name ?> $<?= $entity_class_name ?>, <?= $entity_class_name ?> $<?= $entity_class_name ?>Origin = null)
+ * @method void<?= str_repeat(' ', strlen($entity_class_name)) ?>  delete(<?= $entity_class_name ?> $<?= $entity_class_name ?>)
  */
 class <?= $class_name ?> extends AbstractRepository
 {

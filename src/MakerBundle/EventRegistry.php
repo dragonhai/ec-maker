@@ -70,9 +70,6 @@ class EventRegistry extends BaseEventRegistry
             $activeEvents[] = $eventName;
         }
 
-        // dump($activeEvents);
-        // exit();
-
         $listeners = $this->eventDispatcher->getListeners();
 
         // Check if these listeners are part of the new events.
